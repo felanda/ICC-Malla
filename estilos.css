@@ -1,76 +1,75 @@
-/* -- colores base -- */
-:root{
-  --rosa:#d63384;
-  --rosa-claro:#ffe6f0;
-  --rosa-oscuro:#a5004f;
+:root {
+  --lila: #e0d3f5;
+  --rosado: #fbd1dc;
+  --aprobado: #c2e3c2;
+  --texto-aprobado: #555;
+  --fuente: 'Segoe UI', sans-serif;
 }
 
-/* -- layout general -- */
-body{
-  margin:0;
-  padding:20px;
-  font-family:'Segoe UI',Tahoma,sans-serif;
-  background:#fff0f5;
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  background: #fff0f5;
+  padding: 20px;
 }
 
-h1{
-  text-align:center;
-  color:var(--rosa);
-  margin-bottom:30px;
+h1 {
+  text-align: center;
+  color: #d63384;
+  margin-bottom: 20px;
 }
 
-/* -- contenedor principal (columnas) -- */
-#malla{
-  display:flex;
-  gap:20px;
-  overflow-x:auto;
-  padding-bottom:20px;
+#malla {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
 }
 
-/* -- columna/periodo -- */
-.periodo{
-  min-width:240px;
-  background:var(--rosa-claro);
-  border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,.1);
-  padding:15px;
-  display:flex;
-  flex-direction:column;
+.semestre {
+  min-width: 240px;
+  background: #ffffffdd;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 0 10px #e4c1d9;
 }
 
-.periodo h2{
-  text-align:center;
-  margin:0 0 10px;
-  font-size:15px;
-  color:var(--rosa-oscuro);
-  border-bottom:2px solid var(--rosa);
-  padding-bottom:4px;
+.semestre h2 {
+  text-align: center;
+  color: #d63384;
+  font-size: 16px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #eeb4c7;
+  padding-bottom: 4px;
 }
 
-/* -- cajitas de ramos -- */
-.ramo{
-  background:#fff;
-  color:var(--rosa);
-  border:2px solid var(--rosa);
-  border-radius:8px;
-  padding:10px 6px;
-  margin:6px 0;
-  text-align:center;
-  cursor:pointer;
-  font-size:13.5px;
-  transition:.2s;
-  user-select:none;
-}
-.ramo:hover{background:var(--rosa-claro);}
-
-.ramo.bloqueado{
-  opacity:.4;
-  pointer-events:none;
+.ramo {
+  background: var(--rosado);
+  color: #700f2f;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 2px 2px 5px #00000015;
 }
 
-.ramo.aprobado{
-  background:var(--rosa);
-  color:#fff;
-  border-color:var(--rosa-oscuro);
-  text-decoration:line-through;
+.ramo.lila {
+  background: var(--lila);
+  color: #3a245e;
+}
+
+.ramo.bloqueado {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.ramo.aprobado {
+  background: var(--aprobado);
+  color: var(--texto-aprobado);
+  text-decoration: line-through;
+  font-style: italic;
 }
