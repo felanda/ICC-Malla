@@ -1,76 +1,82 @@
-:root{
-  --lila:#d7c3f8;
-  --rosa:#f9c6d0;
-  --lila-osc:#6145a5;
-  --rosa-osc:#a12047;
-  --verde:#c9e8cb;
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f7f7f7;
+  margin: 20px;
+  color: #333;
 }
 
-body{
-  margin:0;
-  background:#ffeaf3;
-  font-family:'Segoe UI',sans-serif;
-  padding:20px;
+main {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-h1{
-  text-align:center;
-  color:#d63384;
-  margin-bottom:24px;
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-#malla{
-  display:flex;
-  gap:24px;
-  overflow-x:auto;
-  padding-bottom:16px;
+.año {
+  margin-bottom: 40px;
+  padding: 10px;
+  border: 2px solid #d3c1e5;
+  border-radius: 8px;
+  background: #faf7fc;
 }
 
-/* --- columna / semestre --- */
-.semestre{
-  min-width:230px;
-  background:#fff;
-  border-radius:18px;
-  box-shadow:0 0 10px #00000015;
-  padding:14px;
+.año > h1 {
+  font-size: 1.8rem;
+  color: #6b4ca0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #b999d6;
+  padding-bottom: 5px;
 }
 
-.semestre h2{
-  text-align:center;
-  font-size:15px;
-  color:#d63384;
-  margin:0 0 12px;
-  border-bottom:1px solid #e2aac4;
-  padding-bottom:6px;
+.semestre {
+  margin-bottom: 20px;
 }
 
-/* --- ramo (botón) --- */
-.ramo{
-  margin:6px 0;
-  padding:10px 8px;
-  font-size:13.5px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
-  user-select:none;
-  transition:transform .15s,opacity .2s;
-  box-shadow:2px 2px 4px #00000010;
+.semestre > h2 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: #a278b8;
 }
 
-/* color por columna -> se le añade .lila ó .rosa  */
-.ramo.lila{background:var(--lila);color:var(--lila-osc);}
-.ramo.rosa{background:var(--rosa);color:var(--rosa-osc);}
-
-.ramo:hover{transform:scale(1.03);}
-
-.ramo.bloqueado{
-  opacity:.35;
-  pointer-events:none;
+.ramo {
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-bottom: 6px;
+  border-radius: 5px;
+  font-weight: 600;
+  user-select: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.ramo.aprobado{
-  background:var(--verde);
-  color:#375937;
-  text-decoration:line-through;
-  font-style:italic;
+/* Colores alternados */
+.lila {
+  background: #cbb4e2;
+  color: #3b1a6d;
+}
+
+.rosa {
+  background: #e8c3d8;
+  color: #7a2544;
+}
+
+/* Bloqueado */
+.bloqueado {
+  background: #ccc !important;
+  color: #666 !important;
+  cursor: default;
+  text-decoration: none !important;
+}
+
+/* Aprobado: tachado y color menos intenso */
+.aprobado {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Al pasar el mouse por ramos desbloqueados */
+.ramo:not(.bloqueado):hover {
+  filter: brightness(0.9);
 }
