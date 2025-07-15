@@ -1,42 +1,50 @@
-/* estilos.css */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #fff0f5;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff0f6;
   color: #333;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-h1 {
-  background-color: #ff69b4;
-  color: white;
-  padding: 20px 0;
-  margin: 0;
-}
-
-.malla {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
   padding: 20px;
 }
 
-.ramo {
-  background-color: #ffe6f0;
-  border: 2px solid #ff69b4;
-  border-radius: 8px;
-  padding: 10px;
-  width: 180px;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.3s ease;
+h1 {
+  text-align: center;
+  color: #d63384;
+  margin-bottom: 30px;
 }
 
-.ramo.aprobado {
-  background-color: #ffb6c1;
-  text-decoration: line-through;
+#malla {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.periodo {
+  min-width: 220px;
+  background-color: #fce4ec;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(214, 51, 132, 0.2);
+}
+
+.periodo h2 {
+  text-align: center;
+  color: #c2185b;
+  margin-bottom: 15px;
+}
+
+.ramo {
+  background-color: #f8bbd0;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  user-select: none;
 }
 
 .ramo.bloqueado {
@@ -44,11 +52,8 @@ h1 {
   pointer-events: none;
 }
 
-.periodo {
-  width: 100%;
-  margin: 20px 0;
-  font-weight: bold;
-  color: #c71585;
-  border-top: 2px solid #ff69b4;
-  padding-top: 10px;
+.ramo.aprobado {
+  background-color: #e91e63;
+  color: white;
+  text-decoration: line-through;
 }
