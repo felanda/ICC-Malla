@@ -1,59 +1,76 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #fff0f6;
-  color: #333;
-  padding: 20px;
+/* -- colores base -- */
+:root{
+  --rosa:#d63384;
+  --rosa-claro:#ffe6f0;
+  --rosa-oscuro:#a5004f;
 }
 
-h1 {
-  text-align: center;
-  color: #d63384;
-  margin-bottom: 30px;
+/* -- layout general -- */
+body{
+  margin:0;
+  padding:20px;
+  font-family:'Segoe UI',Tahoma,sans-serif;
+  background:#fff0f5;
 }
 
-#malla {
-  display: flex;
-  gap: 25px;
-  overflow-x: auto;
-  padding: 10px;
+h1{
+  text-align:center;
+  color:var(--rosa);
+  margin-bottom:30px;
 }
 
-.periodo {
-  min-width: 220px;
-  background-color: #fce4ec;
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(214, 51, 132, 0.2);
+/* -- contenedor principal (columnas) -- */
+#malla{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  padding-bottom:20px;
 }
 
-.periodo h2 {
-  text-align: center;
-  color: #c2185b;
-  margin-bottom: 15px;
+/* -- columna/periodo -- */
+.periodo{
+  min-width:240px;
+  background:var(--rosa-claro);
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  padding:15px;
+  display:flex;
+  flex-direction:column;
 }
 
-.ramo {
-  background-color: #f8bbd0;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  user-select: none;
+.periodo h2{
+  text-align:center;
+  margin:0 0 10px;
+  font-size:15px;
+  color:var(--rosa-oscuro);
+  border-bottom:2px solid var(--rosa);
+  padding-bottom:4px;
 }
 
-.ramo.bloqueado {
-  opacity: 0.4;
-  pointer-events: none;
+/* -- cajitas de ramos -- */
+.ramo{
+  background:#fff;
+  color:var(--rosa);
+  border:2px solid var(--rosa);
+  border-radius:8px;
+  padding:10px 6px;
+  margin:6px 0;
+  text-align:center;
+  cursor:pointer;
+  font-size:13.5px;
+  transition:.2s;
+  user-select:none;
+}
+.ramo:hover{background:var(--rosa-claro);}
+
+.ramo.bloqueado{
+  opacity:.4;
+  pointer-events:none;
 }
 
-.ramo.aprobado {
-  background-color: #e91e63;
-  color: white;
-  text-decoration: line-through;
+.ramo.aprobado{
+  background:var(--rosa);
+  color:#fff;
+  border-color:var(--rosa-oscuro);
+  text-decoration:line-through;
 }
