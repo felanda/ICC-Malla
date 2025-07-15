@@ -1,142 +1,130 @@
 const malla = document.getElementById("malla");
 
-/* --- LISTA COMPLETA DE RAMOS Y REQUISITOS --- */
+// Datos de ramos con requisitos
 const ramos = [
-  /* ===== PRIMER AÑO ===== */
-  // 1‑1
-  {nombre:"Español",                       req:[],                                        per:"1-1"},
-  {nombre:"Matematicas",                   req:[],                                        per:"1-1"},
-  {nombre:"Introducción a las Ciencias de la Computación", req:[],                        per:"1-1"},
-  {nombre:"Sociología",                    req:[],                                        per:"1-1"},
-  {nombre:"Filosofía",                     req:[],                                        per:"1-1"},
+  // PRIMER AÑO
+  { nombre: "Español", periodo: "1-1", reqs: [] },
+  { nombre: "Matematicas", periodo: "1-1", reqs: [] },
+  { nombre: "Introduccion a las Ciencias de la Computación", periodo: "1-1", reqs: [] },
+  { nombre: "Sociologia", periodo: "1-1", reqs: [] },
+  { nombre: "Filosofia", periodo: "1-1", reqs: [] },
 
-  // 1‑2
-  {nombre:"Expresión Oral y Escrita",      req:["Español"],                               per:"1-2"},
-  {nombre:"Pre‑cálculo",                   req:["Matematicas"],                           per:"1-2"},
-  {nombre:"Fundamentos y Lógica de Programación", req:["Introducción a las Ciencias de la Computación"], per:"1-2"},
-  {nombre:"Historia de Honduras",          req:[],                                        per:"1-2"},
-  {nombre:"El Hombre frente a la Vida",    req:["Filosofía"],                             per:"1-2"},
-  {nombre:"Inglés I",                      req:[],                                        per:"1-2"},
+  { nombre: "Expresion Oral y Esrita", periodo: "1-2", reqs: ["Español"] },
+  { nombre: "Pre-calculo", periodo: "1-2", reqs: ["Matematicas"] },
+  { nombre: "Fundamentos y logica de programacion", periodo: "1-2", reqs: ["Introduccion a las Ciencias de la Computación"] },
+  { nombre: "Historia de Honduras", periodo: "1-2", reqs: [] },
+  { nombre: "El hombre frente a la vida", periodo: "1-2", reqs: ["Filosofia"] },
+  { nombre: "Ingles I", periodo: "1-2", reqs: [] },
 
-  // 1‑3
-  {nombre:"Estadística",                   req:[],                                        per:"1-3"},
-  {nombre:"Cálculo I",                     req:["Pre‑cálculo"],                           per:"1-3"},
-  {nombre:"Programación Estructurada I",   req:["Fundamentos y Lógica de Programación"],  per:"1-3"},
-  {nombre:"Estructuras Discretas",         req:["Fundamentos y Lógica de Programación"],  per:"1-3"},
-  {nombre:"Inglés II",                     req:["Inglés I"],                              per:"1-3"},
-  {nombre:"Diseño Gráfico",                req:[],                                        per:"1-3"},
+  { nombre: "Estadistica", periodo: "1-3", reqs: [] },
+  { nombre: "Calculo I", periodo: "1-3", reqs: ["Pre-calculo"] },
+  { nombre: "Programacion estructurada I", periodo: "1-3", reqs: ["Fundamentos y logica de programacion"] },
+  { nombre: "Estructuras discretas", periodo: "1-3", reqs: ["Fundamentos y logica de programacion"] },
+  { nombre: "Ingles II", periodo: "1-3", reqs: ["Ingles I"] },
+  { nombre: "Diseño grafico", periodo: "1-3", reqs: [] },
 
-  /* ===== SEGUNDO AÑO ===== */
-  // 2‑1
-  {nombre:"Métodos y Técnicas de la Investigación", req:["Estadística"],                  per:"2-1"},
-  {nombre:"Cálculo II",                    req:["Cálculo I"],                             per:"2-1"},
-  {nombre:"Programación Estructurada II",  req:["Programación Estructurada I"],           per:"2-1"},
-  {nombre:"Física I",                      req:[],                                        per:"2-1"},
-  {nombre:"Administración",                req:[],                                        per:"2-1"},
-  {nombre:"Inglés III",                    req:["Inglés II"],                             per:"2-1"},
-  {nombre:"Laboratorio de Física",         req:["Física I"],                              per:"2-1"},
+  // SEGUNDO AÑO
+  { nombre: "Metodos y tecnicas de la investigacion", periodo: "2-1", reqs: ["Estadistica"] },
+  { nombre: "Calculo II", periodo: "2-1", reqs: ["Calculo I"] },
+  { nombre: "Programacion estructurada II", periodo: "2-1", reqs: ["Programacion estructurada I"] },
+  { nombre: "Fisica I", periodo: "2-1", reqs: [] },
+  { nombre: "Administracion", periodo: "2-1", reqs: [] },
+  { nombre: "Ingles III", periodo: "2-1", reqs: ["Ingles II"] },
+  { nombre: "Laboratorio de Fisica", periodo: "2-1", reqs: ["Fisica I"] },
 
-  // 2‑2
-  {nombre:"Base de Datos I",               req:[],                                        per:"2-2"},
-  {nombre:"Contabilidad",                  req:[],                                        per:"2-2"},
-  {nombre:"Programación en Entornos de Desarrollo Visual", req:["Programación Estructurada II"], per:"2-2"},
-  {nombre:"Principios de la Electrónica",  req:["Física I"],                              per:"2-2"},
-  {nombre:"Matemática Financiera",         req:[],                                        per:"2-2"},
-  {nombre:"Inglés IV",                     req:["Inglés III"],                            per:"2-2"},
+  { nombre: "Base de Datos I", periodo: "2-2", reqs: [] },
+  { nombre: "Contabilidad", periodo: "2-2", reqs: [] },
+  { nombre: "Programacion en entornos de desarrollo visual", periodo: "2-2", reqs: ["Programacion estructurada II"] },
+  { nombre: "Principios de la electronica", periodo: "2-2", reqs: ["Fisica I"] },
+  { nombre: "Matematica financiera", periodo: "2-2", reqs: [] },
+  { nombre: "Ingles IV", periodo: "2-2", reqs: ["Ingles III"] },
 
-  // 2‑3
-  {nombre:"Base de Datos II",              req:["Base de Datos I"],                       per:"2-3"},
-  {nombre:"Ética",                         req:["El Hombre frente a la Vida"],            per:"2-3"},
-  {nombre:"Análisis y Diseño de Sistemas", req:["Programación en Entornos de Desarrollo Visual"], per:"2-3"},
-  {nombre:"Redes I",                       req:[],                                        per:"2-3"},
-  {nombre:"Circuitos Lógicos",             req:["Principios de la Electrónica"],          per:"2-3"},
-  {nombre:"Inglés V",                      req:["Inglés IV"],                             per:"2-3"},
+  { nombre: "Base de Datos II", periodo: "2-3", reqs: ["Base de Datos I"] },
+  { nombre: "Etica", periodo: "2-3", reqs: ["El hombre frente a la vida"] },
+  { nombre: "Analisis y diseño de sistemas", periodo: "2-3", reqs: ["Programacion en entornos de desarrollo visual"] },
+  { nombre: "Redes I", periodo: "2-3", reqs: [] },
+  { nombre: "Circuitos Logicos", periodo: "2-3", reqs: ["Principios de la electronica"] },
+  { nombre: "Ingles V", periodo: "2-3", reqs: ["Ingles IV"] },
 
-  /* ===== TERCER AÑO ===== */
-  // 3‑1
-  {nombre:"Base de Datos Multidimensionales",      req:["Base de Datos II"],              per:"3-1"},
-  {nombre:"Programa Multiplataforma",              req:["Análisis y Diseño de Sistemas"], per:"3-1"},
-  {nombre:"Desarrollo de Software",                req:["Análisis y Diseño de Sistemas"], per:"3-1"},
-  {nombre:"Redes II",                              req:["Redes I"],                       per:"3-1"},
-  {nombre:"Sistemas Automatizados",                req:["Circuitos Lógicos"],             per:"3-1"},
-  {nombre:"Inglés VI",                             req:["Inglés V"],                      per:"3-1"},
+  // TERCER AÑO
+  { nombre: "Base de datos multidimensionales", periodo: "3-1", reqs: ["Base de Datos II"] },
+  { nombre: "Programa multiplataforma", periodo: "3-1", reqs: ["Analisis y diseño de sistemas"] },
+  { nombre: "Desarrollo de software", periodo: "3-1", reqs: ["Analisis y diseño de sistemas"] },
+  { nombre: "Redes II", periodo: "3-1", reqs: ["Redes I"] },
+  { nombre: "Sistemas automatizados", periodo: "3-1", reqs: ["Circuitos Logicos"] },
+  { nombre: "Ingles VI", periodo: "3-1", reqs: ["Ingles V"] },
 
-  // 3‑2
-  {nombre:"Sistemas Inteligentes para Negocios",   req:["Base de Datos Multidimensionales"],        per:"3-2"},
-  {nombre:"Implementación de Sistemas de Software",req:["Desarrollo de Software"],                   per:"3-2"},
-  {nombre:"Sistemas Operativos I",                 req:[],                                         per:"3-2"},
-  {nombre:"Microcontroladores",                    req:["Sistemas Automatizados"],                  per:"3-2"},
-  {nombre:"Ecología",                              req:[],                                         per:"3-2"},
+  { nombre: "Sistemas inteligentes para negocios", periodo: "3-2", reqs: ["Base de datos multidimensionales"] },
+  { nombre: "Implementacion de sistemas de software", periodo: "3-2", reqs: ["Desarrollo de software"] },
+  { nombre: "Sistemas operativos I", periodo: "3-2", reqs: [] },
+  { nombre: "Microcrontroladores", periodo: "3-2", reqs: ["Sistemas automatizados"] },
+  { nombre: "Ecologia", periodo: "3-2", reqs: [] },
 
-  // 3‑3
-  {nombre:"Desarrollo de Portales Web I",          req:["Programa Multiplataforma"],                per:"3-3"},
-  {nombre:"Programación Móvil I",                  req:["Programa Multiplataforma"],                per:"3-3"},
-  {nombre:"Gestión a la Calidad Total",            req:[],                                         per:"3-3"},
-  {nombre:"Sistemas Operativos II",                req:["Sistemas Operativos I"],                   per:"3-3"},
+  { nombre: "Desarrollo de portales web I", periodo: "3-3", reqs: ["Programa multiplataforma"] },
+  { nombre: "Programacion movil I", periodo: "3-3", reqs: ["Programa multiplataforma"] },
+  { nombre: "Gestion a la calidad total", periodo: "3-3", reqs: [] },
+  { nombre: "Sistemas operativos II", periodo: "3-3", reqs: ["Sistemas operativos I"] },
 
-  /* ===== CUARTO AÑO ===== */
-  // 4‑1
-  {nombre:"Desarrollo de Portales Web II",         req:["Desarrollo de Portales Web I"],            per:"4-1"},
-  {nombre:"Programación Móvil II",                 req:["Programación Móvil I"],                    per:"4-1"},
-  {nombre:"Control Estadístico de la Calidad",     req:["Gestión a la Calidad Total"],              per:"4-1"},
-  {nombre:"Gestión y Estándares de TI",            req:[],                                         per:"4-1"},
-  {nombre:"Doctrina Social de la Iglesia (TES)",   req:[],                                         per:"4-1"},
+  // CUARTO AÑO
+  { nombre: "Desarrollo de portales web II", periodo: "4-1", reqs: ["Desarrollo de portales web I"] },
+  { nombre: "Programacion movil II", periodo: "4-1", reqs: ["Programacion movil I"] },
+  { nombre: "Control estadistico de la calidad", periodo: "4-1", reqs: ["Gestion a la calidad total"] },
+  { nombre: "Gestion y estandares de tecnologia de informacion", periodo: "4-1", reqs: [] },
+  { nombre: "Doctrina social de la iglesia (TES)", periodo: "4-1", reqs: [] },
 
-  // 4‑2
-  {nombre:"Negocios Web",                          req:["Desarrollo de Portales Web II"],           per:"4-2"},
-  {nombre:"Programación de Negocios",              req:[],                                         per:"4-2"},
-  {nombre:"Planeación y Diseño de un Modelo de Calidad", req:["Control Estadístico de la Calidad"], per:"4-2"},
-  {nombre:"Seguridad Informática y Gestión de Riesgo",    req:["Gestión y Estándares de TI"],        per:"4-2"},
-  {nombre:"Administración de Centros de Cómputo",  req:["Gestión y Estándares de TI"],              per:"4-2"},
-  {nombre:"TES",                                   req:["Doctrina Social de la Iglesia (TES)"],     per:"4-2"},
+  { nombre: "Negocios web", periodo: "4-2", reqs: ["Desarrollo de portales web II"] },
+  { nombre: "Programacion de negocios", periodo: "4-2", reqs: [] },
+  { nombre: "Planeacion y diseño de un modelo de calidad", periodo: "4-2", reqs: ["Control estadistico de la calidad"] },
+  { nombre: "Seguridad informatica y gestion de riesgo", periodo: "4-2", reqs: ["Gestion y estandares de tecnologia de informacion"] },
+  { nombre: "Administracion de centros de computo", periodo: "4-2", reqs: ["Gestion y estandares de tecnologia de informacion"] },
+  { nombre: "TES", periodo: "4-2", reqs: ["Doctrina social de la iglesia (TES)"] },
 
-  // 4‑3
-  {nombre:"Taller de Software",                    req:["Negocios Web"],                            per:"4-3"},
-  {nombre:"Gestión de Proyectos",                  req:["Programación de Negocios"],                per:"4-3"},
-  {nombre:"Big Data",                              req:["Sistemas Inteligentes para Negocios"],     per:"4-3"},
-  {nombre:"Auditoría de Sistemas",                 req:["Seguridad Informática y Gestión de Riesgo"], per:"4-3"},
-  {nombre:"Excel Avanzado para Ingenierías",       req:[],                                         per:"4-3"},
+  { nombre: "Taller de software", periodo: "4-3", reqs: ["Negocios web"] },
+  { nombre: "Gestion de Proyectos", periodo: "4-3", reqs: ["Programacion de negocios"] },
+  { nombre: "Big data", periodo: "4-3", reqs: ["Sistemas inteligentes para negocios"] },
+  { nombre: "Auditoria de sistemas", periodo: "4-3", reqs: ["Seguridad informatica y gestion de riesgo"] },
+  { nombre: "Excel avanzado para ingenierias", periodo: "4-3", reqs: [] },
 
-  // 4‑4
-  {nombre:"Práctica Profesional",                  req:["Taller de Software"],                      per:"4-4"},
+  { nombre: "Practica profesional", periodo: "4-4", reqs: ["Taller de software"] },
 ];
 
-/* --- AGRUPAR POR PERÍODO --- */
+// Cargar ramos aprobados del almacenamiento local
+let aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosICC") || "[]"));
+
+// Agrupar por periodo
 const periodos = {};
 ramos.forEach(r => {
-  if(!periodos[r.per]) periodos[r.per] = [];
-  periodos[r.per].push(r);
+  if (!periodos[r.periodo]) periodos[r.periodo] = [];
+  periodos[r.periodo].push(r);
 });
 
-/* --- APROBADOS (persistimos en localStorage) --- */
-const aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosMalla")||"[]"));
+// Renderizar
+function render() {
+  malla.innerHTML = "";
+  Object.keys(periodos).sort().forEach(p => {
+    const col = document.createElement("div");
+    col.className = "semestre";
+    col.innerHTML = `<h2>${formatoPeriodo(p)}</h2>`;
 
-/* --- CONSTRUIR UI --- */
-function pintar(){
-  malla.innerHTML="";
-  Object.keys(periodos).sort().forEach(p=>{
-    const col=document.createElement("div");
-    col.className="periodo";
-    col.innerHTML=`<h2>Periodo ${p.replace("-"," Año ")}</h2>`;
+    periodos[p].forEach(r => {
+      const div = document.createElement("div");
+      div.className = "ramo";
+      if (p.endsWith("1") || p.endsWith("3")) div.classList.add("lila");
 
-    periodos[p].forEach(r=>{
-      const div=document.createElement("div");
-      div.className="ramo";
-      div.textContent=r.nombre;
+      const desbloqueado = r.reqs.every(req => aprobados.has(req));
+      if (!desbloqueado) div.classList.add("bloqueado");
+      if (aprobados.has(r.nombre)) div.classList.add("aprobado");
 
-      const desbloqueado = r.req.every(req=>aprobados.has(req));
-      if(!desbloqueado) div.classList.add("bloqueado");
-      if(aprobados.has(r.nombre)) div.classList.add("aprobado");
-
-      div.addEventListener("click",()=>{
-        if(aprobados.has(r.nombre)){
+      div.textContent = r.nombre;
+      div.onclick = () => {
+        if (aprobados.has(r.nombre)) {
           aprobados.delete(r.nombre);
-        }else if(desbloqueado){
+        } else if (desbloqueado) {
           aprobados.add(r.nombre);
         }
-        guardar();
-        pintar();
-      });
+        localStorage.setItem("aprobadosICC", JSON.stringify([...aprobados]));
+        render();
+      };
 
       col.appendChild(div);
     });
@@ -145,9 +133,10 @@ function pintar(){
   });
 }
 
-/* --- guardar progreso --- */
-function guardar(){
-  localStorage.setItem("aprobadosMalla",JSON.stringify([...aprobados]));
+function formatoPeriodo(p) {
+  const [año, sem] = p.split("-");
+  const suf = ["", "er", "do", "er", "to"];
+  return `${sem}º Semestre`;
 }
 
-pintar();
+render();
