@@ -1,75 +1,76 @@
-:root {
-  --lila: #e0d3f5;
-  --rosado: #fbd1dc;
-  --aprobado: #c2e3c2;
-  --texto-aprobado: #555;
-  --fuente: 'Segoe UI', sans-serif;
+:root{
+  --lila:#d7c3f8;
+  --rosa:#f9c6d0;
+  --lila-osc:#6145a5;
+  --rosa-osc:#a12047;
+  --verde:#c9e8cb;
 }
 
-body {
-  margin: 0;
-  font-family: var(--fuente);
-  background: #fff0f5;
-  padding: 20px;
+body{
+  margin:0;
+  background:#ffeaf3;
+  font-family:'Segoe UI',sans-serif;
+  padding:20px;
 }
 
-h1 {
-  text-align: center;
-  color: #d63384;
-  margin-bottom: 20px;
+h1{
+  text-align:center;
+  color:#d63384;
+  margin-bottom:24px;
 }
 
-#malla {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 10px;
+#malla{
+  display:flex;
+  gap:24px;
+  overflow-x:auto;
+  padding-bottom:16px;
 }
 
-.semestre {
-  min-width: 240px;
-  background: #ffffffdd;
-  border-radius: 16px;
-  padding: 10px;
-  box-shadow: 0 0 10px #e4c1d9;
+/* --- columna / semestre --- */
+.semestre{
+  min-width:230px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 0 10px #00000015;
+  padding:14px;
 }
 
-.semestre h2 {
-  text-align: center;
-  color: #d63384;
-  font-size: 16px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid #eeb4c7;
-  padding-bottom: 4px;
+.semestre h2{
+  text-align:center;
+  font-size:15px;
+  color:#d63384;
+  margin:0 0 12px;
+  border-bottom:1px solid #e2aac4;
+  padding-bottom:6px;
 }
 
-.ramo {
-  background: var(--rosado);
-  color: #700f2f;
-  margin-bottom: 8px;
-  padding: 10px;
-  border-radius: 12px;
-  font-size: 14px;
-  text-align: center;
-  transition: 0.3s;
-  cursor: pointer;
-  user-select: none;
-  box-shadow: 2px 2px 5px #00000015;
+/* --- ramo (botón) --- */
+.ramo{
+  margin:6px 0;
+  padding:10px 8px;
+  font-size:13.5px;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+  user-select:none;
+  transition:transform .15s,opacity .2s;
+  box-shadow:2px 2px 4px #00000010;
 }
 
-.ramo.lila {
-  background: var(--lila);
-  color: #3a245e;
+/* color por columna -> se le añade .lila ó .rosa  */
+.ramo.lila{background:var(--lila);color:var(--lila-osc);}
+.ramo.rosa{background:var(--rosa);color:var(--rosa-osc);}
+
+.ramo:hover{transform:scale(1.03);}
+
+.ramo.bloqueado{
+  opacity:.35;
+  pointer-events:none;
 }
 
-.ramo.bloqueado {
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-.ramo.aprobado {
-  background: var(--aprobado);
-  color: var(--texto-aprobado);
-  text-decoration: line-through;
-  font-style: italic;
+.ramo.aprobado{
+  background:var(--verde);
+  color:#375937;
+  text-decoration:line-through;
+  font-style:italic;
 }
