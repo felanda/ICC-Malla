@@ -106,51 +106,81 @@ ramos.forEach(r=>{
 // Progreso guardado
 let aprob = new Set(JSON.parse(localStorage.getItem("mallaICC")||"[]"));
 
-// Render
+// Función para renderizar toda la malla
 function render(){
   malla.innerHTML="";
+
+  // Ordenar periodos
   const orden = Object.keys(periodos).sort((a,b)=>{
     const [a1,a2]=a.split("-").map(Number);
     const [b1,b2]=b.split("-").map(Number);
     return a1!==b1? a1-b1 : a2-b2;
   });
 
-  orden.forEach((p,i)=>{
-    const col=document.createElement("div");
-    col.className="semestre";
-    col.innerHTML=`<h2>${textoPeriodo(p)}</h2>`;
+  // Agrupar periodos por año
+  const años = {};
+  orden.forEach(p=>{
+    const [año] = p.split("-");
+    if(!años[año]) años[año] = [];
+    años[año].push(p);
+  });
 
-    periodos[p].forEach(r=>{
-      const div=document.createElement("div");
-      div.className="ramo "+(i%2===0?"lila":"rosa");
+  // Nombres de años para mostrar
+  const nombresAños = {
+    "1": "Primer Año",
+    "2": "Segundo Año",
+    "3": "Tercer Año",
+    "4": "Cuarto Año"
+  };
 
-      // estado
-      const desbloq = r.req.every(req=>aprob.has(req));
-      if(!desbloq) div.classList.add("bloqueado");
-      if(aprob.has(r.n)) div.classList.add("aprobado");
+  // Renderizar cada año con sus semestres
+  Object.entries(años).forEach(([año, semestres])=>{
+    const divAño = document.createElement("div");
+    divAño.className = "año";
 
-      div.textContent=r.n;
-      div.onclick=()=>{
-        if(aprob.has(r.n)){ // quitar aprobación
-          aprob.delete(r.n);
-        }else if(disbloqueado(r)){ // aprobar
-          aprob.add(r.n);
-        }
-        guardar();
-        render();
-      };
-      col.appendChild(div);
+    const tituloAño = document.createElement("h1");
+    tituloAño.textContent = nombresAños[año] || `Año ${año}`;
+    divAño.appendChild(tituloAño);
+
+    semestres.forEach((p,i)=>{
+      const col=document.createElement("div");
+      col.className="semestre";
+      col.innerHTML=`<h2>${textoPeriodo(p)}</h2>`;
+
+      periodos[p].forEach(r=>{
+        const div=document.createElement("div");
+        div.className="ramo "+(i%2===0?"lila":"rosa");
+
+        // estado
+        const desbloq = r.req.every(req=>aprob.has(req));
+        if(!desbloq) div.classList.add("bloqueado");
+        if(aprob.has(r.n)) div.classList.add("aprobado");
+
+        div.textContent=r.n;
+        div.onclick=()=>{
+          if(aprob.has(r.n)){ // quitar aprobación
+            aprob.delete(r.n);
+          }else if(desbloqueado(r)){ // aprobar
+            aprob.add(r.n);
+          }
+          guardar();
+          render();
+        };
+        col.appendChild(div);
+      });
+
+      divAño.appendChild(col);
     });
 
-    malla.appendChild(col);
+    malla.appendChild(divAño);
   });
 }
 
-function disbloqueado(r){return r.req.every(req=>aprob.has(req));}
+function desbloqueado(r){return r.req.every(req=>aprob.has(req));}
 function guardar(){localStorage.setItem("mallaICC",JSON.stringify([...aprob]));}
 function textoPeriodo(p){
   const [ano,sem]=p.split("-");
-  return `Año ${ano} - ${sem}º Semestre`;
+  return `${sem}º Semestre`;
 }
 
 render();
