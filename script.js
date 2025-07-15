@@ -1,102 +1,153 @@
-// script.js
-const ramos = {
-  "Español": ["Expresion Oral y Escrita"],
-  "Matematicas": ["Pre-calculo"],
-  "Introduccion a las Ciencias de la Computación": ["Fundamentos y logica de programacion"],
-  "Filosofia": ["El hombre frente a la vida"],
-  "Expresion Oral y Esrita": [],
-  "Pre-calculo": ["Calculo I"],
-  "Fundamentos y logica de programacion": ["Programacion estructurada I", "Estructuras discretas"],
-  "Historia de Honduras": [],
-  "El hombre frente a la vida": ["Etica"],
-  "Ingles I": ["Ingles II"],
-  "Estadistica": ["Metodos y tecnicas de la investigacion"],
-  "Calculo I": ["Calculo II"],
-  "Programacion estructurada I": ["Programacion estructurada II"],
-  "Estructuras discretas": [],
-  "Ingles II": ["Ingles III"],
-  "Diseño grafico": [],
-  "Metodos y tecnicas de la investigacion": [],
-  "Calculo II": [],
-  "Programacion estructurada II": ["Programacion en entornos de desarrollo visual"],
-  "Fisica I": ["Principios de la electronica"],
-  "Administracion": [],
-  "Ingles III": ["Ingles IV"],
-  "Laboratorio de Fisica": [],
-  "Base de Datos I": ["Base de Datos II"],
-  "Contabilidad": [],
-  "Programacion en entornos de desarrollo visual": [],
-  "Principios de la electronica": ["Circuitos Logicos"],
-  "Matematica financiera": [],
-  "Ingles IV": ["Ingles V"],
-  "Base de Datos II": ["Base de datos multidimensionales"],
-  "Etica": [],
-  "Analisis y diseño de sistemas": ["Desarrollo de software"],
-  "Redes I": ["Redes II"],
-  "Circuitos Logicos": ["Sistemas automatizados"],
-  "Ingles V": ["Ingles VI"],
-  "Base de datos multidimensionales": ["Sistemas inteligentes para negocios"],
-  "Programa multiplataforma": ["Desarrollo de portales web I"],
-  "Desarrollo de software": ["Implementacion de sistemas de software"],
-  "Redes II": [],
-  "Sistemas automatizados": [],
-  "Ingles VI": [],
-  "Sistemas inteligentes para negocios": ["Big data"],
-  "Implementacion de sistemas de software": [],
-  "Sistemas operativos I": ["Sistemas operativos II"],
-  "Microcrontroladores": ["Seminario de hardware"],
-  "Ecologia": [],
-  "Desarrollo de portales web I": ["Desarrollo de portales web II"],
-  "Programacion movil I": ["Programacion movil II"],
-  "Gestion a la calidad total": ["Control estadistico de la calidad"],
-  "Sistemas operativos II": [],
-  "Desarrollo de portales web II": ["Negocios web"],
-  "Programacion movil II": [],
-  "Control estadistico de la calidad": ["Planeacion y diseño de un modelo de calidad"],
-  "Gestion y estandares de tecnologia de informacion": ["Seguridad informatica y gestion de riesgo", "Administracion de centros de computo"],
-  "Doctrina social de la iglesia": [],
-  "Negocios web": ["Taller de software"],
-  "Programacion de negocios": ["Gestion de Proyectos"],
-  "Planeacion y diseño de un modelo de calidad": [],
-  "Seguridad informatica y gestion de riesgo": ["Auditoria de sistemas"],
-  "Administracion de centros de computo": [],
-  "TES": [],
-  "Taller de software": [],
-  "Gestion de Proyectos": [],
-  "Big data": [],
-  "Auditoria de sistemas": [],
-  "Excel avanzado para ingenierias": [],
-  "Practica profesional": []
-};
+const malla = document.getElementById("malla");
 
-const contenedor = document.getElementById("malla");
+/* --- LISTA COMPLETA DE RAMOS Y REQUISITOS --- */
+const ramos = [
+  /* ===== PRIMER AÑO ===== */
+  // 1‑1
+  {nombre:"Español",                       req:[],                                        per:"1-1"},
+  {nombre:"Matematicas",                   req:[],                                        per:"1-1"},
+  {nombre:"Introducción a las Ciencias de la Computación", req:[],                        per:"1-1"},
+  {nombre:"Sociología",                    req:[],                                        per:"1-1"},
+  {nombre:"Filosofía",                     req:[],                                        per:"1-1"},
 
-Object.keys(ramos).forEach(ramo => {
-  const div = document.createElement("div");
-  div.classList.add("ramo");
-  div.classList.add("bloqueado");
-  div.textContent = ramo;
-  div.addEventListener("click", () => aprobarRamo(ramo, div));
-  contenedor.appendChild(div);
+  // 1‑2
+  {nombre:"Expresión Oral y Escrita",      req:["Español"],                               per:"1-2"},
+  {nombre:"Pre‑cálculo",                   req:["Matematicas"],                           per:"1-2"},
+  {nombre:"Fundamentos y Lógica de Programación", req:["Introducción a las Ciencias de la Computación"], per:"1-2"},
+  {nombre:"Historia de Honduras",          req:[],                                        per:"1-2"},
+  {nombre:"El Hombre frente a la Vida",    req:["Filosofía"],                             per:"1-2"},
+  {nombre:"Inglés I",                      req:[],                                        per:"1-2"},
+
+  // 1‑3
+  {nombre:"Estadística",                   req:[],                                        per:"1-3"},
+  {nombre:"Cálculo I",                     req:["Pre‑cálculo"],                           per:"1-3"},
+  {nombre:"Programación Estructurada I",   req:["Fundamentos y Lógica de Programación"],  per:"1-3"},
+  {nombre:"Estructuras Discretas",         req:["Fundamentos y Lógica de Programación"],  per:"1-3"},
+  {nombre:"Inglés II",                     req:["Inglés I"],                              per:"1-3"},
+  {nombre:"Diseño Gráfico",                req:[],                                        per:"1-3"},
+
+  /* ===== SEGUNDO AÑO ===== */
+  // 2‑1
+  {nombre:"Métodos y Técnicas de la Investigación", req:["Estadística"],                  per:"2-1"},
+  {nombre:"Cálculo II",                    req:["Cálculo I"],                             per:"2-1"},
+  {nombre:"Programación Estructurada II",  req:["Programación Estructurada I"],           per:"2-1"},
+  {nombre:"Física I",                      req:[],                                        per:"2-1"},
+  {nombre:"Administración",                req:[],                                        per:"2-1"},
+  {nombre:"Inglés III",                    req:["Inglés II"],                             per:"2-1"},
+  {nombre:"Laboratorio de Física",         req:["Física I"],                              per:"2-1"},
+
+  // 2‑2
+  {nombre:"Base de Datos I",               req:[],                                        per:"2-2"},
+  {nombre:"Contabilidad",                  req:[],                                        per:"2-2"},
+  {nombre:"Programación en Entornos de Desarrollo Visual", req:["Programación Estructurada II"], per:"2-2"},
+  {nombre:"Principios de la Electrónica",  req:["Física I"],                              per:"2-2"},
+  {nombre:"Matemática Financiera",         req:[],                                        per:"2-2"},
+  {nombre:"Inglés IV",                     req:["Inglés III"],                            per:"2-2"},
+
+  // 2‑3
+  {nombre:"Base de Datos II",              req:["Base de Datos I"],                       per:"2-3"},
+  {nombre:"Ética",                         req:["El Hombre frente a la Vida"],            per:"2-3"},
+  {nombre:"Análisis y Diseño de Sistemas", req:["Programación en Entornos de Desarrollo Visual"], per:"2-3"},
+  {nombre:"Redes I",                       req:[],                                        per:"2-3"},
+  {nombre:"Circuitos Lógicos",             req:["Principios de la Electrónica"],          per:"2-3"},
+  {nombre:"Inglés V",                      req:["Inglés IV"],                             per:"2-3"},
+
+  /* ===== TERCER AÑO ===== */
+  // 3‑1
+  {nombre:"Base de Datos Multidimensionales",      req:["Base de Datos II"],              per:"3-1"},
+  {nombre:"Programa Multiplataforma",              req:["Análisis y Diseño de Sistemas"], per:"3-1"},
+  {nombre:"Desarrollo de Software",                req:["Análisis y Diseño de Sistemas"], per:"3-1"},
+  {nombre:"Redes II",                              req:["Redes I"],                       per:"3-1"},
+  {nombre:"Sistemas Automatizados",                req:["Circuitos Lógicos"],             per:"3-1"},
+  {nombre:"Inglés VI",                             req:["Inglés V"],                      per:"3-1"},
+
+  // 3‑2
+  {nombre:"Sistemas Inteligentes para Negocios",   req:["Base de Datos Multidimensionales"],        per:"3-2"},
+  {nombre:"Implementación de Sistemas de Software",req:["Desarrollo de Software"],                   per:"3-2"},
+  {nombre:"Sistemas Operativos I",                 req:[],                                         per:"3-2"},
+  {nombre:"Microcontroladores",                    req:["Sistemas Automatizados"],                  per:"3-2"},
+  {nombre:"Ecología",                              req:[],                                         per:"3-2"},
+
+  // 3‑3
+  {nombre:"Desarrollo de Portales Web I",          req:["Programa Multiplataforma"],                per:"3-3"},
+  {nombre:"Programación Móvil I",                  req:["Programa Multiplataforma"],                per:"3-3"},
+  {nombre:"Gestión a la Calidad Total",            req:[],                                         per:"3-3"},
+  {nombre:"Sistemas Operativos II",                req:["Sistemas Operativos I"],                   per:"3-3"},
+
+  /* ===== CUARTO AÑO ===== */
+  // 4‑1
+  {nombre:"Desarrollo de Portales Web II",         req:["Desarrollo de Portales Web I"],            per:"4-1"},
+  {nombre:"Programación Móvil II",                 req:["Programación Móvil I"],                    per:"4-1"},
+  {nombre:"Control Estadístico de la Calidad",     req:["Gestión a la Calidad Total"],              per:"4-1"},
+  {nombre:"Gestión y Estándares de TI",            req:[],                                         per:"4-1"},
+  {nombre:"Doctrina Social de la Iglesia (TES)",   req:[],                                         per:"4-1"},
+
+  // 4‑2
+  {nombre:"Negocios Web",                          req:["Desarrollo de Portales Web II"],           per:"4-2"},
+  {nombre:"Programación de Negocios",              req:[],                                         per:"4-2"},
+  {nombre:"Planeación y Diseño de un Modelo de Calidad", req:["Control Estadístico de la Calidad"], per:"4-2"},
+  {nombre:"Seguridad Informática y Gestión de Riesgo",    req:["Gestión y Estándares de TI"],        per:"4-2"},
+  {nombre:"Administración de Centros de Cómputo",  req:["Gestión y Estándares de TI"],              per:"4-2"},
+  {nombre:"TES",                                   req:["Doctrina Social de la Iglesia (TES)"],     per:"4-2"},
+
+  // 4‑3
+  {nombre:"Taller de Software",                    req:["Negocios Web"],                            per:"4-3"},
+  {nombre:"Gestión de Proyectos",                  req:["Programación de Negocios"],                per:"4-3"},
+  {nombre:"Big Data",                              req:["Sistemas Inteligentes para Negocios"],     per:"4-3"},
+  {nombre:"Auditoría de Sistemas",                 req:["Seguridad Informática y Gestión de Riesgo"], per:"4-3"},
+  {nombre:"Excel Avanzado para Ingenierías",       req:[],                                         per:"4-3"},
+
+  // 4‑4
+  {nombre:"Práctica Profesional",                  req:["Taller de Software"],                      per:"4-4"},
+];
+
+/* --- AGRUPAR POR PERÍODO --- */
+const periodos = {};
+ramos.forEach(r => {
+  if(!periodos[r.per]) periodos[r.per] = [];
+  periodos[r.per].push(r);
 });
 
-function aprobarRamo(nombre, div) {
-  if (div.classList.contains("bloqueado")) return;
+/* --- APROBADOS (persistimos en localStorage) --- */
+const aprobados = new Set(JSON.parse(localStorage.getItem("aprobadosMalla")||"[]"));
 
-  div.classList.toggle("aprobado");
+/* --- CONSTRUIR UI --- */
+function pintar(){
+  malla.innerHTML="";
+  Object.keys(periodos).sort().forEach(p=>{
+    const col=document.createElement("div");
+    col.className="periodo";
+    col.innerHTML=`<h2>Periodo ${p.replace("-"," Año ")}</h2>`;
 
-  const dependientes = ramos[nombre];
-  dependientes.forEach(dep => {
-    const hijos = [...document.querySelectorAll(".ramo")];
-    const target = hijos.find(h => h.textContent === dep);
-    if (target && !document.querySelector(`.ramo.aprobado:contains('${nombre}')`)) {
-      target.classList.remove("bloqueado");
-    }
+    periodos[p].forEach(r=>{
+      const div=document.createElement("div");
+      div.className="ramo";
+      div.textContent=r.nombre;
+
+      const desbloqueado = r.req.every(req=>aprobados.has(req));
+      if(!desbloqueado) div.classList.add("bloqueado");
+      if(aprobados.has(r.nombre)) div.classList.add("aprobado");
+
+      div.addEventListener("click",()=>{
+        if(aprobados.has(r.nombre)){
+          aprobados.delete(r.nombre);
+        }else if(desbloqueado){
+          aprobados.add(r.nombre);
+        }
+        guardar();
+        pintar();
+      });
+
+      col.appendChild(div);
+    });
+
+    malla.appendChild(col);
   });
 }
 
-// Desbloquear los ramos iniciales
-["Español", "Matematicas", "Introduccion a las Ciencias de la Computación", "Sociologia", "Filosofia"].forEach(nombre => {
-  const target = [...document.querySelectorAll(".ramo")].find(h => h.textContent === nombre);
-  if (target) target.classList.remove("bloqueado");
-});
+/* --- guardar progreso --- */
+function guardar(){
+  localStorage.setItem("aprobadosMalla",JSON.stringify([...aprobados]));
+}
+
+pintar();
